@@ -139,5 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Jazzmin settings
 JAZZMIN_SETTINGS = {
     "site_brand" : "Video Sharing",
-    "site_logo" : "images/qwer.jpg",
+    "site_header" : "Youtube Clone",
 }
