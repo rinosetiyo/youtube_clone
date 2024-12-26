@@ -30,6 +30,7 @@ class Video(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     views = models.PositiveIntegerField(default=0)
+    likes = models.ManyToManyField(User, related_name='video_likes')
 
     def __str__(self):
         return self.title
