@@ -15,6 +15,7 @@ def channel_directory_path(instance, filename):
     return f'thumbnails/user_{instance.user.id}/{filename}'
 
 class Channel(models.Model):
+    cover_image = models.ImageField(upload_to=channel_directory_path, null=True)
     images = models.ImageField(upload_to=channel_directory_path, null=True)
     full_name = models.CharField(max_length=100)
     channel_name = models.CharField(max_length=200)

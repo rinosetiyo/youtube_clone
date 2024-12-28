@@ -31,7 +31,8 @@ class Video(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     views = models.PositiveIntegerField(default=0)
     likes = models.ManyToManyField(User, related_name='video_likes')
-
+    is_featured = models.BooleanField(default=False)
+    
     def __str__(self):
         return self.title
     
