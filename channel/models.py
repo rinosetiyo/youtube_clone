@@ -34,9 +34,9 @@ class Channel(models.Model):
     # location
     location_business = models.CharField(max_length=200, null=True, blank=True)
     make_location_public = models.BooleanField(default=False)
-    
+
     # social media links
-    social_media_links = models.CharField(max_length=200, null=True, blank=True default="https://www.youtube.com/")
+    social_media_links = models.CharField(max_length=200, null=True, blank=True, default="https://www.youtube.com/")
     social_media_links2 = models.CharField(max_length=200, null=True, blank=True)
     social_media_links3 = models.CharField(max_length=200, null=True, blank=True)
     social_media_links4 = models.CharField(max_length=200, null=True, blank=True)
