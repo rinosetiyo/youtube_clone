@@ -27,5 +27,20 @@ class Channel(models.Model):
     subscribers = models.ManyToManyField(User, related_name="user_subs")
     verified = models.BooleanField(default=False)
 
+    # business account
+    email_business = models.EmailField(null=True, blank=True)
+    make_email_public = models.BooleanField(default=False)
+
+    # location
+    location_business = models.CharField(max_length=200, null=True, blank=True)
+    make_location_public = models.BooleanField(default=False)
+    
+    # social media links
+    social_media_links = models.CharField(max_length=200, null=True, blank=True default="https://www.youtube.com/")
+    social_media_links2 = models.CharField(max_length=200, null=True, blank=True)
+    social_media_links3 = models.CharField(max_length=200, null=True, blank=True)
+    social_media_links4 = models.CharField(max_length=200, null=True, blank=True)
+    make_social_media_public = models.BooleanField(default=False)
+
     def __str__(self):
         return self.channel_name
