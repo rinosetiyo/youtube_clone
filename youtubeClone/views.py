@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from channel.models import Channel
 from youtubeClone.models import Video
@@ -27,12 +27,16 @@ def like_video(request, video_id):
 
     if user in video.likes.all():
         video.likes.remove(user)
-        response = "Disliked"
-        return JsonResponse(response, safe=False, status=200)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    
+        # response = "Disliked"
+        # return JsonResponse(response, safe=False, status=200)
     else:
         video.likes.add(user)
-        response = "Liked"
-        return JsonResponse(response, safe=False, status=200)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    
+        # response = "Liked"
+        # return JsonResponse(response, safe=False, status=200)
 
 def load_likes(request, video_id):
     video = Video.objects.get(id=video_id)
