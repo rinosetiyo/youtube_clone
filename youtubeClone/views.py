@@ -42,3 +42,14 @@ def load_likes(request, video_id):
     video = Video.objects.get(id=video_id)
     likes = list(video.likes.values())
     return JsonResponse(likes, safe=False, status=200)
+
+def save_video(request, video_id):
+    video = Video.objects.get(id=video_id)
+    user = request.user.profile
+
+    if user in video.saved_videos.all():
+        video.saved_videos.remove(user)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    else:
+        video.saved_videos.add(user)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
