@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userauths',
     'youtubeClone',
+    'channel',
 
     # Third party apps
     'import_export',
@@ -125,7 +126,10 @@ AUTH_USER_MODEL = 'userauths.User'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# static file config
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # media
 MEDIA_URL = '/media/'

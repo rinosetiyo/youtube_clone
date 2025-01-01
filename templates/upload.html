@@ -1,5 +1,3 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Youtube</title>
-    <link rel="icon" type="images/png" href=" {% static "images/youtube-icon.png" %}">
-    <link rel="stylesheet" href=" {% static "css/style.css" %}" type="text/css">
+    <link rel="icon" type="images/png" href="images/youtube-icon.png">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
@@ -113,49 +111,75 @@
 
         <!-- Video Section Starts -->
         <div class="videos">
-            <div class="drop-down-container">
-                <h1>Recommended</h1>
-                <div class="dropdown-content-background">
-                    <div class="dropdown-contents">
-                        <div class="dropdown-content">
-                            <i class="material-icons">videocam</i>
-                            <span>Create</span>
+            <div class="upload-content">
+                <div class="left-video">
+                    <h4>Details</h4>
+                    <div class="input-div">
+                        <span>Title (required) <span id="count"></span> </span><br>
+                        <input id="title" type="text" onkeyup="titleValidate()">
+                        <div class="error-div" id="error-div">
+                            
                         </div>
-                        <div class="dropdown-content">
-                            <i class="material-icons">settings</i>
-                            <span>Settings</span>
+                    </div>
+                    <script>
+                        
+                    </script>
+                    <div class="desc-div">
+                        <span>Description (required) <span id="desc-count"></span> </span> <br>
+                        <textarea name="" id="description" onkeyup="desc_validate()"></textarea>
+
+                    </div>
+                    
+                    <div class="tags-div">
+                        <span>Tags (optional) </span> <br>
+                        <input type="text" >
+                        <p>Seperate Tags with Comma</p>
+                    </div>
+
+                    <div class="video-div file-input" id="file-input">
+                        <small>Thumbnail (required) </small> <br>
+                        <input type="file" class="file">
+                        <!-- <input type='file'> -->
+                        <span class='button'><i class="material-icons">image</i></span>
+                        <span class='label' data-js-label>No image selected</label>
+                        
+                    </div>
+                    
+                    <div class="video-div file-input">
+                        <small>Video (required) </small> <br>
+                        <input type="file" class="file">
+                        <!-- <input type='file'> -->
+                        <span class='button'><i class="material-icons">videocam</i></span>
+                        <span class='label' data-js-label>No video selected</label>
+                        
+                    </div>
+                    <div class="upload-btn-div">
+                        <button class="upload-btn">Publish</button>
+                    </div>
+                </div>
+                <div class="right-video">
+                    <div class="r-thumb">
+                        <div class="uploading-video">
+                            <h5>Uploading Video...</h5>
                         </div>
-                        <div class="dropdown-content">
-                            <i class="material-icons">person</i>
-                            <span>Switch Account</span>
+                        <!-- <img src="images/logo.jpg" alt=""> -->
+                        <div class="video-details">
+                                <h5>Video Links</h5>
+                                <a href="">https://youtu.be/Bgstu6u&4</a>
+                            
+                                <h4>Filename</h4>
+                                <span >Video File name here</span>
                         </div>
                     </div>
                 </div>
             </div>
                 
             <div class="videos__container">
-                <!-- Single Video Starts Here -->
-                 {% for v in videos %}
-                <div class="video">
-                    <div class="video__thumbnail">
-                        <img src="{{ v.thumbnail.url }}" alt="">
-                    </div>
-                    <div class="video__details">
-                        <div class="author">
-                            <img src="images/logo.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <h3>{{ v.title }}</h3>
-                            <a href=""><small>{{ v.user.first_name }} <i class="fas fa-check-circle"></i></small></a>
-                            <span><small>1M Views . {{v.created_at | timesince }}</small></span>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+                
             </div>
         </div>
     </div>
 
-<script src="{% static "js/main.js" %}"></script>
+<script src="js/main.js"></script>
 </body>
-</html>
+</html> 
