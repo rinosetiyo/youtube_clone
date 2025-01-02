@@ -1,7 +1,8 @@
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from channel.models import Channel
-from youtubeClone.models import Video
+from youtubeClone.models import Video, Comment
+from youtubeClone.forms import CommentForm
 
 # Create your views here.
 def index(request):
@@ -10,6 +11,33 @@ def index(request):
         "videos": videos,
     }
     return render(request, "index.html", context)
+
+def video_detail(request, video_id):
+    video = get_object_or_404(Video, id=video_id)
+    comments = Comment.objects.filter(video=video, parent=None)
+
+    if request.method == "POST":
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid:
+            # parent_obj = None
+            # if request.POST.get("parent_id"):
+            #     parent = request.POST.get("parent_id")
+            #     parent_obj = Comment.objects.get(id=parent)
+            comment = comment_form.save(commit=False)
+            get_video_id = request.POST.get("video_id")
+            video = Video.objects.get(id=get_video_id)
+            comment.video = video
+            comment.user = request.user
+            comment.save()
+    else:
+        comment_form = CommentForm()
+
+    context = {
+        "video": video,
+        "comment_form": comment_form,
+        "comments": comments,
+    }
+    return render(request, "video.html", context)
 
 # def add_new_subscribers(request, channel_id):
 #     subs = Channel.objects.get(id=channel_id)

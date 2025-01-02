@@ -1,5 +1,4 @@
 from django.db import models
-from statistics import mode
 from taggit.managers import TaggableManager
 from django.conf import settings
 
@@ -37,7 +36,7 @@ class Video(models.Model):
         return self.title
     
 class Comment(models.Model):
-    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='comments')
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
     comment = models.TextField()

@@ -145,7 +145,7 @@
                             <img src="images/logo.jpg" alt="">
                         </div>
                         <div class="title">
-                            <h3>{{ v.title }}</h3>
+                            <h3><a href="{% url "video_detail" v.id %}">{{ v.title }} </a></h3>
                             <a href=""><small>{{ v.user.first_name }} <i class="fas fa-check-circle"></i></small></a>
                             <span><small>1M Views . {{v.created_at | timesince }}</small></span>
                         </div>
