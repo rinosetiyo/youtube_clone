@@ -14,7 +14,7 @@ def index(request):
 
 def video_detail(request, video_id):
     video = get_object_or_404(Video, id=video_id)
-    comments = Comment.objects.filter(video=video, parent=None)
+    comments = Comment.objects.filter(video=video)
 
     if request.method == "POST":
         comment_form = CommentForm(request.POST)
@@ -38,6 +38,11 @@ def video_detail(request, video_id):
         "comments": comments,
     }
     return render(request, "video.html", context)
+
+def channel_view(request):
+    channels = Channel.objects.all()
+    return render(request, "channel.html")
+
 
 # def add_new_subscribers(request, channel_id):
 #     subs = Channel.objects.get(id=channel_id)

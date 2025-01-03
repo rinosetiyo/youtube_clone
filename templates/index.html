@@ -142,7 +142,7 @@
                     </div>
                     <div class="video__details">
                         <div class="author">
-                            <img src="images/logo.jpg" alt="">
+                            <a href="{% url "channel_view" %}"><img src="{{ v.user.profile.profile_picture.url }}" alt=""></a>
                         </div>
                         <div class="title">
                             <h3><a href="{% url "video_detail" v.id %}">{{ v.title }} </a></h3>

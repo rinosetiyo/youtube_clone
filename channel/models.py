@@ -24,7 +24,7 @@ class Channel(models.Model):
     joined = models.DateTimeField(auto_now_add=True)
     status = models.CharField(choices=STATUS, max_length=100, default='active')
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, related_name="channel")
-    subscribers = models.ManyToManyField(User, related_name="user_subs")
+    subscribers = models.ManyToManyField(User, related_name="user_subs", null=True, blank=True)
     verified = models.BooleanField(default=False)
 
     # business account
