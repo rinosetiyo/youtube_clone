@@ -2,6 +2,8 @@ from django.db import models
 from taggit.managers import TaggableManager
 from django.conf import settings
 
+from channel.models import Channel
+
 # Create your models here.
 User = settings.AUTH_USER_MODEL
 
@@ -31,6 +33,7 @@ class Video(models.Model):
     views = models.PositiveIntegerField(default=0)
     likes = models.ManyToManyField(User, related_name='video_likes')
     is_featured = models.BooleanField(default=False)
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE, related_name="channel_videos", null=True, blank=True)
     
     def __str__(self):
         return self.title

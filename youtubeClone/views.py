@@ -39,9 +39,14 @@ def video_detail(request, video_id):
     }
     return render(request, "video.html", context)
 
-def channel_view(request):
-    channels = Channel.objects.all()
-    return render(request, "channel.html")
+def channel_view(request, channel_id):
+    channel = Channel.objects.get(id=channel_id)
+    videos = Video.objects.filter(channel=channel)
+    context = {
+        "channel": channel,
+        "videos": videos,
+    }
+    return render(request, "channel.html", context)
 
 
 # def add_new_subscribers(request, channel_id):

@@ -114,13 +114,13 @@
         <div class="videos">
             
             <div class="channel-art">
-                <img src="images/channel-art.jpg" alt="">
+                <img src="{{channel.cover_image.url}}" alt="">
             </div>
             <div class="channel-header flex">
                 <div class="channel-img-title flex">
-                    <img class="img" src="images/logo.jpg" alt="">
+                    <img class="img" src="{{channel.images.url}}" alt="">
                     <div class="channel-image-texts">
-                        <h4>Desphixs</h4>
+                        <h4>{{channel.channel_name}}</h4>
                         <span>2.46K subscribers</span>
                     </div>
                 </div>
@@ -163,111 +163,25 @@
             </div>
             <br>
             <div class="videos__container">
+                {% for v in videos %}
                 <!-- Single Video Starts Here -->
                 <div class="video">
                     <div class="video__thumbnail">
-                        <img src="images/1.jpg" alt="">
+                        <img src="{{v.thumbnail.url}}" alt="">
                     </div>
                     <div class="video__details">
                         <div class="author">
-                            <img src="images/logo.jpg" alt="">
+                            <img src="{{v.channel.images.url}}" alt="">
                         </div>
                         <div class="title">
-                            <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                            <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
+                            <h3>{{v.title}}</h3>
+                            <a href=""><small>{{v.channel.channel_name}} <i class="fas fa-check-circle"></i></small></a>
                             <span><small>1M Views . 1 Months Ago</small></span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Single Video Starts Here -->
-                <div class="video">
-                    <div class="video__thumbnail">
-                        <img src="images/1.jpg" alt="">
-                    </div>
-                    <div class="video__details">
-                        <div class="author">
-                            <img src="images/logo.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                            <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                            <span><small>1M Views . 1 Months Ago</small></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Video Starts Here -->
-                <div class="video">
-                    <div class="video__thumbnail">
-                        <img src="images/1.jpg" alt="">
-                    </div>
-                    <div class="video__details">
-                        <div class="author">
-                            <img src="images/logo.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                            <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                            <span><small>1M Views . 1 Months Ago</small></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Video Starts Here -->
-                <div class="video">
-                    <div class="video__thumbnail">
-                        <img src="images/1.jpg" alt="">
-                    </div>
-                    <div class="video__details">
-                        <div class="author">
-                            <img src="images/logo.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                            <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                            <span><small>1M Views . 1 Months Ago</small></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Video Starts Here -->
-                <div class="video">
-                    <div class="video__thumbnail">
-                        <img src="images/1.jpg" alt="">
-                    </div>
-                    <div class="video__details">
-                        <div class="author">
-                            <img src="images/logo.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                            <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                            <span><small>1M Views . 1 Months Ago</small></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Video Starts Here -->
-                <div class="video">
-                    <div class="video__thumbnail">
-                        <img src="images/1.jpg" alt="">
-                    </div>
-                    <div class="video__details">
-                        <div class="author">
-                            <img src="images/logo.jpg" alt="">
-                        </div>
-                        <div class="title">
-                            <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                            <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                            <span><small>1M Views . 1 Months Ago</small></span>
-                        </div>
-                    </div>
-                </div>
-
-                
-
-
+                <!-- Single Video Ends Here -->
+                {% endfor %}
             </div>
         </div>
     </div>
