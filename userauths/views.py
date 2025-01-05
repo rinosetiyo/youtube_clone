@@ -8,19 +8,19 @@ from django.contrib import messages
 # user = settings.AUTH_USER_MODEL
 
 def register(request):
-    # if request.user.is_authenticated:
-    #     return redirect('home')
+    if request.user.is_authenticated:
+        return redirect('home')
     
-    # if request.method == 'POST':
-    #     form = UserRegisterForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    # else:
-    #     form = UserRegisterForm()
-    # context = {
-    #     'form': form,
-    # }
-    return render(request, 'new_snip.html')
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = UserRegisterForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'register.html')
 
 def login(request):
     
