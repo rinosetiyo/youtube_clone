@@ -4,7 +4,10 @@ from channel.models import Channel
 from youtubeClone.models import Video, Comment
 from youtubeClone.forms import CommentForm
 
-# Create your views here.
+# Create your views here
+def test(request):
+    return render(request, "login.html")
+
 def index(request):
     videos = Video.objects.all()
     context = {

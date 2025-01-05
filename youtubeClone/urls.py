@@ -3,6 +3,7 @@ from youtubeClone import views
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path("<video_id>/", views.video_detail, name="video_detail"),
+    path("videos/<video_id>/", views.video_detail, name="video_detail"),
     path("channel/<channel_id>", views.channel_view, name="channel_view"),
+    path("test/", views.test, name="test"),
 ]
