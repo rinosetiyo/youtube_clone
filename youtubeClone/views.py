@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from channel.models import Channel
 from youtubeClone.models import Video, Comment
 from youtubeClone.forms import CommentForm
@@ -51,23 +52,36 @@ def channel_view(request, channel_id):
     }
     return render(request, "channel.html", context)
 
+def search(request):
+    videos = Video.objects.filter(visibility="public")
+    query = request.GET.get("q")
+    if query:
+        videos = videos.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query)
+        ).distinct()
+    context = {
+        "videos": videos,
+        "query": query,
+    }
+    return render(request, "search.html", context)
 
-# def add_new_subscribers(request, channel_id):
-#     subs = Channel.objects.get(id=channel_id)
-#     user = request.user
+def add_new_subscribers(request, channel_id):
+    subs = Channel.objects.get(id=channel_id)
+    user = request.user
 
-#     if user in subs.subscribers.all():
-#         subs.subscribers.remove(user)
-#         response = "Unsubscribed"
-#         return JsonResponse(response, safe=False, staus=200)
-#     else:
-#         subs.subscribers.add(user)
-#         response = "Subscribed"
+    if user in subs.subscribers.all():
+        subs.subscribers.remove(user)
+        response = "Unsubscribed"
+        return JsonResponse(response, safe=False, staus=200)
+    else:
+        subs.subscribers.add(user)
+        response = "Subscribed"
 
-# def load_subscribers(request, channel_id):
-#     subs = Channel.objects.get(id=channel_id)
-#     subs_lists = list(subs.subscribers.values())
-#     return JsonResponse(subs_lists, safe=False, status=200)
+def load_subscribers(request, channel_id):
+    subs = Channel.objects.get(id=channel_id)
+    subs_lists = list(subs.subscribers.values())
+    return JsonResponse(subs_lists, safe=False, status=200)
 
 # def like_video(request, video_id):
 #     video = Video.objects.get(id=video_id)
@@ -92,12 +106,12 @@ def channel_view(request, channel_id):
 #     return JsonResponse(likes, safe=False, status=200)
 
 # def save_video(request, video_id):
-    video = Video.objects.get(id=video_id)
-    user = request.user.profile
+    # video = Video.objects.get(id=video_id)
+    # user = request.user.profile
 
-    if user in video.saved_videos.all():
-        video.saved_videos.remove(user)
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    else:
-        video.saved_videos.add(user)
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    # if user in video.saved_videos.all():
+    #     video.saved_videos.remove(user)
+    #     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    # else:
+    #     video.saved_videos.add(user)
+    #     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
